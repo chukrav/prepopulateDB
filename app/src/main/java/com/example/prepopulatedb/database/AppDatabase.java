@@ -1,6 +1,10 @@
 package com.example.prepopulatedb.database;
 
 import android.content.Context;
+import android.util.Log;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.concurrent.Executors;
 
@@ -12,6 +16,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 @Database(entities = {DataEntity.class}, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
+    private static String TAG = AppDatabase.class.getSimpleName();
 
     private static AppDatabase INSTANCE;
 
@@ -36,6 +41,10 @@ public abstract class AppDatabase extends RoomDatabase {
                             @Override
                             public void run() {
                                 getInstance(context).dataDao().insertAll(DataEntity.populateData());
+                                String data = JSONuse.loadJSONFromAsset(context);
+                                JSONArray array = JSONuse.readJSONArray(data);
+                                JSONuse.readJObject(array, 0);
+                                Log.d(TAG,"After JSON read ...."+array.length());
                             }
                         });
                     }
