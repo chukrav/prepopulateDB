@@ -1,6 +1,8 @@
 package com.example.prepopulatedb;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -13,8 +15,12 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
+    private static final int NUM_LIST_ITEMS = 100;
 
     private AppDatabase mDb;
+
+    private GreenAdapter mAdapter;
+    private RecyclerView mNumbersList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +29,16 @@ public class MainActivity extends AppCompatActivity {
 
         mDb = AppDatabase.getInstance(this);
         Log.d(TAG,"Got DB-handle! =====");
+
+//        mNumbersList = (RecyclerView) findViewById(R.id.rv_numbers);
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+//        mNumbersList.setLayoutManager(layoutManager);
+//        mNumbersList.setHasFixedSize(true);
+//        mAdapter = new GreenAdapter(NUM_LIST_ITEMS);
+//
+//        mNumbersList.setAdapter(mAdapter);
+
+
 
 
     }
